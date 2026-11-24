@@ -1,0 +1,442 @@
+  
+  /* ================================
+     1. GLOBAL SETTINGS
+  ================================ */
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    font-family: "Inter", "Segoe UI", sans-serif;
+  
+    --bg: #080a0f;
+    --surface: #10141d;
+    --surface-hover: #191f2b;
+    --border: rgba(255, 255, 255, 0.08);
+  
+    --text: #f5f7fb;
+    --muted: #858d9d;
+  
+    --accent: #8da8ff;
+    --accent-soft: rgba(141, 168, 255, 0.12);
+  
+    --correct: #4ade80;
+    --wrong: #fb7185;
+  
+    --shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+  }
+  
+  body[data-theme="light"] {
+    --bg: #f3f5fa;
+    --surface: #ffffff;
+    --surface-hover: #edf0f7;
+    --border: rgba(20, 30, 50, 0.09);
+  
+    --text: #171c29;
+    --muted: #737d90;
+  
+    --accent: #526fe5;
+    --accent-soft: rgba(82, 111, 229, 0.1);
+  
+    --correct: #16a34a;
+    --wrong: #e54863;
+  
+    --shadow: 0 25px 70px rgba(30, 40, 70, 0.08);
+  }
+  
+  body {
+    min-height: 80vh;
+    background: var(--bg);
+    color: var(--text);
+  
+    display: grid;
+    place-items: center;
+  
+    padding: 24px;
+    overflow-x: hidden;
+  
+    transition:
+      background-color 0.4s ease,
+      color 0.4s ease;
+  }
+  
+  /* ================================
+     2. MAIN LAYOUT
+  ================================ */
+  
+  .quiz-shell {
+    width: 100%;
+    max-width: 620px;
+  
+    animation: appear 0.8s ease both;
+  }
+  
+  .quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    margin-bottom: 30px;
+  }
+  
+  .brand {
+    font-size: 17px;
+    font-weight: 750;
+    letter-spacing: -0.7px;
+  }
+  
+  .brand span {
+    color: var(--accent);
+  }
+  
+  .quiz-subtitle {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  /* ================================
+     3. THEME TOGGLE
+  ================================ */
+  
+  .theme-toggle {
+    width: 44px;
+    height: 44px;
+  
+    display: grid;
+    place-items: center;
+  
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  
+    background: var(--surface);
+    color: var(--text);
+  
+    font-size: 18px;
+    cursor: pointer;
+  
+    transition:
+      transform 0.3s ease,
+      background 0.3s ease,
+      border-color 0.3s ease;
+  }
+  
+  .theme-toggle:hover {
+    transform: rotate(12deg) scale(1.06);
+    background: var(--surface-hover);
+  }
+  
+  .theme-toggle:active {
+    transform: scale(0.92);
+  }
+  
+  /* ================================
+     4. QUIZ CARD
+  ================================ */
+  
+  .quiz-card {
+    padding: 32px;
+  
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 25px;
+  
+    box-shadow: var(--shadow);
+  
+    transition:
+      background 0.4s ease,
+      border-color 0.4s ease,
+      box-shadow 0.4s ease;
+  }
+  
+  /* ================================
+     5. QUESTION INFORMATION
+  ================================ */
+  
+  .question-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    margin-bottom: 16px;
+  }
+  
+  .question-count {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  
+  .score-label {
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  
+  /* ================================
+     6. PROGRESS BAR
+  ================================ */
+  
+  .progress-track {
+    width: 100%;
+    height: 6px;
+  
+    background: var(--surface-hover);
+    border-radius: 20px;
+  
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  
+  .progress-fill {
+    width: 10%;
+    height: 100%;
+  
+    background: var(--accent);
+    border-radius: inherit;
+  
+    transition: width 0.5s cubic-bezier(.2, .8, .2, 1);
+  }
+  
+  /* ================================
+     7. QUESTION TEXT
+  ================================ */
+  
+  .question-text {
+    font-size: clamp(21px, 5vw, 28px);
+    line-height: 1.4;
+    letter-spacing: -0.8px;
+  
+    font-weight: 700;
+    margin-bottom: 26px;
+  
+    animation: slideUp 0.45s ease both;
+  }
+  
+  /* ================================
+     8. ANSWER OPTIONS
+  ================================ */
+  
+  .options-list {
+    display: grid;
+    gap: 12px;
+  }
+  
+  .option-btn {
+    width: 100%;
+    min-height: 60px;
+  
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  
+    padding: 15px 18px;
+  
+    border: 1px solid var(--border);
+    border-radius: 15px;
+  
+    background: transparent;
+    color: var(--text);
+  
+    text-align: left;
+    font: inherit;
+    font-size: 14px;
+  
+    cursor: pointer;
+  
+    transition:
+      transform 0.25s ease,
+      background 0.25s ease,
+      border-color 0.25s ease;
+  }
+  
+  .option-btn:hover {
+    background: var(--surface-hover);
+    border-color: var(--accent);
+    transform: translateX(4px);
+  }
+  
+  .option-btn:active {
+    transform: scale(0.98);
+  }
+  
+  .option-btn.selected {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+  }
+  
+  .option-btn.correct {
+    border-color: var(--correct);
+    background: color-mix(in srgb, var(--correct) 10%, transparent);
+  }
+  
+  .option-btn.wrong {
+    border-color: var(--wrong);
+    background: color-mix(in srgb, var(--wrong) 10%, transparent);
+  }
+  
+  .option-letter {
+    width: 30px;
+    height: 30px;
+  
+    display: grid;
+    place-items: center;
+  
+    flex-shrink: 0;
+  
+    border-radius: 9px;
+    background: var(--surface-hover);
+  
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  
+  /* ================================
+     9. NEXT BUTTON
+  ================================ */
+  
+  .next-btn {
+    width: 100%;
+    min-height: 54px;
+  
+    margin-top: 28px;
+  
+    border: none;
+    border-radius: 14px;
+  
+    background: var(--accent);
+    color: #080a0f;
+  
+    font: inherit;
+    font-size: 14px;
+    font-weight: 750;
+  
+    cursor: pointer;
+  
+    transition:
+      transform 0.25s ease,
+      opacity 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+  
+  .next-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px var(--accent-soft);
+  }
+  
+  .next-btn:active {
+    transform: scale(0.98);
+  }
+  
+  .next-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  /* ================================
+     10. FOOTER
+  ================================ */
+  
+  .quiz-footer {
+    margin-top: 22px;
+    text-align: center;
+  
+    color: var(--muted);
+    font-size: 12px;
+  }
+  
+  /* ================================
+     11. CIRCULAR THEME REVEAL
+  ================================ */
+  
+  /* Supported browsers animate the new page
+     from the coordinates supplied by JavaScript. */
+  
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.65s;
+    animation-timing-function: cubic-bezier(.2, .8, .2, 1);
+  }
+  
+  ::view-transition-old(root) {
+    animation: none;
+    z-index: 1;
+  }
+  
+  ::view-transition-new(root) {
+    z-index: 2;
+  
+    animation-name: circularReveal;
+  }
+  
+  @keyframes circularReveal {
+    from {
+      clip-path: circle(
+        0px at var(--reveal-x, 50%) var(--reveal-y, 50%)
+      );
+    }
+  
+    to {
+      clip-path: circle(
+        var(--reveal-radius, 150vmax)
+        at var(--reveal-x, 50%) var(--reveal-y, 50%)
+      );
+    }
+  }
+  
+  /* ================================
+     12. GENERAL ANIMATIONS
+  ================================ */
+  
+  @keyframes appear {
+    from {
+      opacity: 0;
+      transform: translateY(25px);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* ================================
+     13. MOBILE RESPONSIVENESS
+  ================================ */
+  
+  @media (max-width: 520px) {
+    body {
+      padding: 18px;
+    }
+  
+    .quiz-card {
+      padding: 23px 19px;
+      border-radius: 21px;
+    }
+  
+    .quiz-header {
+      margin-bottom: 23px;
+    }
+  
+    .option-btn {
+      min-height: 56px;
+      padding: 13px;
+    }
+  }

@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080a0f">
+  <title>QuizFlow | Test Your Knowledge</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+</head>
+
+<body data-theme="dark">
+
+  <main class="quiz-shell">
+
+    <!-- Header -->
+    <header class="quiz-header">
+      <div>
+        <h1 class="brand">Quiz<span>Flow.</span></h1>
+        <p class="quiz-subtitle">Challenge your knowledge</p>
+      </div>
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        ☀
+      </button>
+    </header>
+
+    <!-- Quiz -->
+    <section class="quiz-card">
+
+      <!-- Question information -->
+      <div class="question-meta">
+        <span class="question-count" id="questionCount">
+          Question 1 of 10
+        </span>
+
+        <span class="score-label" id="scoreValue">
+          Score: 0
+        </span>
+      </div>
+
+      <!-- Progress -->
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <!-- Question -->
+      <h2 class="question-text" id="questionText">
+        Which language runs directly in the browser?
+      </h2>
+
+      <!-- Options -->
+      <div class="options-list" id="options">
+
+        <button class="option-btn">
+          <span class="option-letter">A</span>
+          Python
+        </button>
+
+        <button class="option-btn">
+          <span class="option-letter">B</span>
+          JavaScript
+        </button>
+
+        <button class="option-btn">
+          <span class="option-letter">C</span>
+          C++
+        </button>
+
+      </div>
+
+      <!-- Next -->
+      <button class="next-btn" id="nextBtn" disabled>
+        Next Question →
+      </button>
+
+    </section>
+
+    <footer class="quiz-footer">
+      Built to challenge your thinking.
+    </footer>
+
+  </main>
+
+</body>
+</html>
