@@ -9,6 +9,7 @@
     const options = document.getElementById("options");
     
     const nextBtn = document.getElementById("nextBtn");
+    const restartBtn = document.getElementById("restartBtn")
     
     const questions = [
         {
@@ -74,9 +75,10 @@
     let currentIndex = 0;
     let score = 0;
     let selectedOption = null;
+    let currentQuestion;
     
     function showQuestion() {
-        const currentQuestion = questions[currentIndex]
+        currentQuestion = questions[currentIndex]
         questionText.textContent = currentQuestion.question;
         questionCount.textContent = `Question ${currentIndex + 1 } of ${questions.length}`
         options.innerHTML = ""
@@ -135,10 +137,9 @@
             questionText.textContent = ` Quiz finished! Score: ${score}/${questions.length}`
             options.innerHTML = ""
             nextBtn.style.display = "none"
+            restartBtn.hidden = false
         }
     }
-    
-    let newTheme = null;
     
     themeToggle.addEventListener("click",(e) => {
         const coX = e.clientX
@@ -149,11 +150,24 @@
         
         const currentTheme = document.body.dataset.theme
         
-        newTheme = currentTheme === "dark" ? "light" : "dark"
+        const newTheme = currentTheme === "dark" ? "light" : "dark"
         
         document.startViewTransition(() => {
             document.body.dataset.theme = newTheme
         })
+    })
+    
+    restartBtn.addEventListener("click",() => {
+        restartBtn.hidden = true
+        currentIndex = 0
+        score = 0
+        scoreValue.textContent = `Score: ${score}`;
+        selectedOption = null
+        //currentQuestion = questions[currentIndex]
+        showQuestion()
+        nextBtn.disabled = true;
+        updateProgress()
+        nextBtn.style.display = "block"
     })
     
     showQuestion()
