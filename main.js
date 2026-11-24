@@ -69,6 +69,72 @@
             question: "Which array method checks whether at least one element passes a test?",
             options: ["every()", "some()", "filter()"],
             answer: "some()"
+        },
+        {
+            question: "Which keyword is used to create a constant in JavaScript?",
+            options: ["let", "const", "var"],
+            answer: "const"
+        },
+        {
+            question: "Which method removes the last element from an array?",
+            options: ["shift()", "pop()", "slice()"],
+            answer: "pop()"
+        },
+        {
+            question: "What does DOM stand for?",
+            options: [
+                "Document Object Model",
+                "Data Object Management",
+                "Digital Ordinance Model"
+            ],
+            answer: "Document Object Model"
+        },
+        {
+            question: "Which operator checks both value and type?",
+            options: ["==", "===", "!="],
+            answer: "==="
+        },
+        {
+            question: "Which CSS property controls the space outside an element's border?",
+            options: ["padding", "margin", "border-spacing"],
+            answer: "margin"
+        },
+        {
+            question: "Which method converts a JavaScript object into a JSON string?",
+            options: [
+                "JSON.parse()",
+                "JSON.stringify()",
+                "JSON.object()"
+            ],
+            answer: "JSON.stringify()"
+        },
+        {
+            question: "What does addEventListener() do?",
+            options: [
+                "Creates an HTML element",
+                "Listens for an event",
+                "Removes an event"
+            ],
+            answer: "Listens for an event"
+        },
+        {
+            question: "Which HTML attribute provides alternative text for an image?",
+            options: ["src", "title", "alt"],
+            answer: "alt"
+        },
+        {
+            question: "Which array method returns the first element that passes a test?",
+            options: ["find()", "filter()", "map()"],
+            answer: "find()"
+        },
+        {
+            question: "What does the flex-direction property control?",
+            options: [
+                "Element transparency",
+                "Direction of flex items",
+                "Text alignment"
+            ],
+            answer: "Direction of flex items"
         }
     ]   
     
@@ -82,6 +148,7 @@
         questionText.textContent = currentQuestion.question;
         questionCount.textContent = `Question ${currentIndex + 1 } of ${questions.length}`
         options.innerHTML = ""
+        const shuffledOptions = [...currentQuestion.options];
         currentQuestion.options.forEach((option,index) => {
             const btn = document.createElement("button")
             btn.className = "option-btn"
